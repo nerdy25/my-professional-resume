@@ -1,0 +1,27 @@
+name: My first pipeline
+
+on:
+    push:
+        branches: [main]
+
+jobs: 
+    build:
+        runs-on: ubuntu-latest # macos-latest, windows-latest
+
+        steps:
+            - name: Clone the code
+              uses: actions/checkout@v2
+            - name: Build image
+              run:
+                    docker build -t tayad25/cicd-portfolio .
+            - name: Docker login
+              uses: docker/login-action@v3
+              with:
+                    username: tayad25 
+                    password: ${{ secrets.Docker_Password }}
+            - name: push image
+              run:
+                  docker push tayad25/cicd-portfolio            
+
+
+        

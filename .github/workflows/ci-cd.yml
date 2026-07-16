@@ -17,7 +17,7 @@ jobs:
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: 'fs'
-          severity: High,Critical
+          severity: HIGH,CRITICAL
           exit-code: 1
 
       - name: Build Docker Image
@@ -28,10 +28,10 @@ jobs:
         with:
           image-ref: 654654510185.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
           scan-type: 'image'
-          severity: High,Critical
+          severity: HIGH,CRITICAL
           exit-code: 1
           ignore-unfixed: true
           name: Push Image to ECR
           RUN: ECHO "push"
-          
+
 

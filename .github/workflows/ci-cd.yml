@@ -17,7 +17,7 @@ jobs:
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: 'fs'
-          severity: HIGH,CRITICAL
+          severity: 'HIGH,CRITICAL'
           exit-code: 1
 
       - name: Build Docker Image
@@ -28,10 +28,12 @@ jobs:
         with:
           image-ref: 654654510185.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
           scan-type: 'image'
-          severity: HIGH,CRITICAL
+          severity: 'HIGH,CRITICAL'
           exit-code: 1
           ignore-unfixed: true
-          name: Push Image to ECR
-          RUN: ECHO "push"
 
-
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::654654510185:role/github-action-role
+          aws-region: aws-region-1

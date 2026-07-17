@@ -41,3 +41,6 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::654654510185:role/github-action-role
           aws-region: us-east-1
+
+      - name: Push Image to ECR
+        run:  docker push 654654510185.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
